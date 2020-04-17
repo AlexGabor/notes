@@ -1,0 +1,16 @@
+:host {
+    display: block;
+    max-width: 500px;
+
+    ul {
+        padding: 0;
+        li {
+            list-style-type: none;
+            padding: 16px;
+
+            &:hover {
+                background-color: #ddd;
+            }
+        }
+    }
+}
