@@ -2,7 +2,7 @@ import { Location, FolderLocation, FileLocation } from './location';
 import { Injectable } from '@angular/core';
 import { of, Observable, BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +12,9 @@ export class NavigationService {
   constructor(private http: HttpClient) { }
 
   private currentPath = '';
+  private currentFilePath = '';
   private currentItems = new BehaviorSubject<Location[]>([]);
+  private currentFile = new BehaviorSubject<string>('');
 
   getCurrentItems(): Observable<Location[]> {
     if (this.currentPath === '') {
@@ -24,6 +26,11 @@ export class NavigationService {
   navigateTo(item: FolderLocation) {
     this.currentPath = item.path;
     this.navigate();
+  }
+
+  setFile(item: FileLocation) {
+    this.currentFilePath = item.path;
+    this.getFile();
   }
 
   isAtRoot() {
@@ -53,9 +60,22 @@ export class NavigationService {
       }));
     });
   }
+
+  getCurrentFile() {
+    return this.currentFile.asObservable();
+  }
+
+  private getFile() {
+    this.http.get(baseUrl + this.currentFilePath, { headers: FileHeader, responseType: 'text' })
+      .subscribe(response =>
+        this.currentFile.next(response as string)
+      );
+  }
 }
 
 const baseUrl = 'https://api.github.com/repos/AlexGabor/recipes/contents/';
+
+const FileHeader = new HttpHeaders({Accept: 'application/vnd.github.raw'});
 
 class ItemResponse {
   name: string;

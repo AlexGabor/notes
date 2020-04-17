@@ -6,11 +6,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { NavigationComponent } from './feature/navigation/navigation.component';
+import { FileComponent } from './feature/file/file.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavigationComponent
+    NavigationComponent,
+    FileComponent
   ],
   imports: [
     BrowserModule,

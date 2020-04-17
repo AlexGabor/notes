@@ -1,6 +1,6 @@
 import { NavigationService } from './navigation.service';
 import { Component, OnInit } from '@angular/core';
-import { Location, FolderLocation } from './location';
+import { Location, FolderLocation, FileLocation } from './location';
 
 @Component({
   selector: 'app-navigation',
@@ -21,6 +21,8 @@ export class NavigationComponent implements OnInit {
   onItemClick(item: Location) {
     if (item instanceof FolderLocation) {
       this.navigationService.navigateTo(item as FolderLocation);
+    } else {
+      this.navigationService.setFile(item as FileLocation);
     }
   }
 
