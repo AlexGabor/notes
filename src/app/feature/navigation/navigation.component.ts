@@ -24,7 +24,19 @@ export class NavigationComponent implements OnInit {
     }
   }
 
+  isAtRoot() {
+    return this.navigationService.isAtRoot();
+  }
+
   onRoot() {
     this.navigationService.navigateToRoot();
+  }
+
+  onBack() {
+    this.navigationService.navigateBack();
+  }
+
+  isDir(item: Location) {
+    return item instanceof FolderLocation;
   }
 }

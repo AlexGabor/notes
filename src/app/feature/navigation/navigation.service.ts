@@ -1,36 +1,70 @@
 import { Location, FolderLocation, FileLocation } from './location';
 import { Injectable } from '@angular/core';
 import { of, Observable, BehaviorSubject } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class NavigationService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
-  private currentLocation = new BehaviorSubject<Location[]>(ROOT_ITEMS);
+  private currentPath = '';
+  private currentItems = new BehaviorSubject<Location[]>([]);
 
   getCurrentItems(): Observable<Location[]> {
-    return this.currentLocation;
+    if (this.currentPath === '') {
+      this.navigate();
+    }
+    return this.currentItems.asObservable();
   }
 
   navigateTo(item: FolderLocation) {
-    this.currentLocation.next(item.items);
+    this.currentPath = item.path;
+    this.navigate();
+  }
+
+  isAtRoot() {
+    return this.currentPath === '';
+  }
+
+  navigateBack() {
+    if (!this.isAtRoot()) {
+      this.currentPath = this.currentPath.substring(0, this.currentPath.lastIndexOf('/'));
+      this.navigate();
+    }
   }
 
   navigateToRoot() {
-    this.currentLocation.next(ROOT_ITEMS);
+    this.currentPath = '';
+    this.navigate();
+  }
+
+  private navigate(path: string = this.currentPath) {
+    this.http.get<ItemResponse[]>(baseUrl + path).subscribe((response: ItemResponse[]) => {
+     this.currentItems.next(response.map(item => {
+        if (item.type === 'dir') {
+          return new FolderLocation(item.name, item.path);
+        } else {
+          return new FileLocation(item.name, item.path);
+        }
+      }));
+    });
   }
 }
 
-export const ROOT_ITEMS: Location[] = [
-  new FolderLocation('Android', [
-    new FileLocation('Utils'),
-    new FileLocation('Resources')
-  ]),
-  new FolderLocation('Angular', [
-    new FileLocation('Resources')
-  ])
-];
+const baseUrl = 'https://api.github.com/repos/AlexGabor/recipes/contents/';
 
+class ItemResponse {
+  name: string;
+  path: string;
+  type: string;
+
+  constructor(name: string, path: string, type: string) {
+    this.name = name;
+    this.path = path;
+    this.type = type;
+  }
+}

@@ -1,4 +1,7 @@
 <button (click)="onRoot()">Root</button>
+<button (click)="onBack()" [disabled]="isAtRoot()">Back</button>
 <ul>
-  <li *ngFor="let item of items" (click)="onItemClick(item)">{{item.name}}</li>
+  <li *ngFor="let item of items" (click)="onItemClick(item)">
+    {{item.name}}<span *ngIf="isDir(item)">/</span>
+  </li>
 </ul>
