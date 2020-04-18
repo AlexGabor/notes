@@ -1,7 +1,6 @@
-<button (click)="onRoot()">Root</button>
 <button (click)="onBack()" [disabled]="isAtRoot()">Back</button>
 <ul>
   <li *ngFor="let item of items" (click)="onItemClick(item)">
-    {{item.name}}<span *ngIf="isDir(item)">/</span>
+    {{item.name}}<span *ngIf="isDir(item)"><mat-icon>chevron_right</mat-icon></span>
   </li>
 </ul>

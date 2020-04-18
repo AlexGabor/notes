@@ -30,10 +30,6 @@ export class NavigationComponent implements OnInit {
     return this.navigationService.isAtRoot();
   }
 
-  onRoot() {
-    this.navigationService.navigateToRoot();
-  }
-
   onBack() {
     this.navigationService.navigateBack();
   }
