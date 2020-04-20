@@ -1,6 +1,5 @@
-<button (click)="onBack()" [disabled]="isAtRoot()">Back</button>
 <ul>
-  <li *ngFor="let item of items" (click)="onItemClick(item)">
+  <li *ngFor="let item of items" [routerLink]="['/path/' + item.path]">
     {{item.name}}<span *ngIf="isDir(item)"><mat-icon>chevron_right</mat-icon></span>
   </li>
 </ul>

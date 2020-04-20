@@ -2,13 +2,13 @@
     <button mat-icon-button (click)="toggleMenu()">
         <mat-icon>menu</mat-icon>
     </button>
-    <span (click)="navigateHome()">Knowlegde base</span>
+    <span [routerLink]="['']">Knowlegde base</span>
 </mat-toolbar>
 <mat-sidenav-container [hasBackdrop]="hasBackdrop">
     <mat-sidenav [opened]="sideMenuOpened" mode="over">
         <app-navigation></app-navigation>
     </mat-sidenav>
     <mat-sidenav-content>
-        <app-file></app-file>
+        <router-outlet></router-outlet>
     </mat-sidenav-content>
 </mat-sidenav-container>

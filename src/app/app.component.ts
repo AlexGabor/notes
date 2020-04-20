@@ -28,8 +28,4 @@ export class AppComponent implements OnInit {
   toggleMenu() {
     this.sideMenuOpened = !this.sideMenuOpened;
   }
-
-  navigateHome() {
-    this.navigationService.navigateToRoot();
-  }
 }
