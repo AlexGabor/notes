@@ -14,7 +14,7 @@
             width: 280px;
         }
 
-        mat-sidenav-content {
+        mat-sidenav-content > div {
             display: block;
             max-width: 680px;
             margin: 0 auto;
