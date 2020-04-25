@@ -123,6 +123,12 @@
               "devServerTarget": "knowledge-base-web:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {
+            "baseHref": "https://alexgabor.github.io/knowledge-base-web/"
+          }
         }
       }
     }
