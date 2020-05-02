@@ -11,16 +11,26 @@ export class AppComponent implements OnInit {
 
   constructor(private breakpoint: BreakpointObserver, private navigationService: NavigationService) { }
 
-  hasBackdrop = false;
-  sideMenuOpened = true;
+  hasNavigationDrawer = false;
+  hasContentsDrawer = false;
+  sideMenuOpened = false;
 
   ngOnInit() {
+    this.breakpoint.observe(['(min-width: 1240px)'])
+      .subscribe(result => {
+        if (result.matches) {
+          this.hasNavigationDrawer = false;
+        } else {
+          this.hasNavigationDrawer = true;
+        }
+      });
+
     this.breakpoint.observe(['(min-width: 960px)'])
       .subscribe(result => {
         if (result.matches) {
-          this.hasBackdrop = false;
+          this.hasContentsDrawer = false;
         } else {
-          this.hasBackdrop = true;
+          this.hasContentsDrawer = true;
         }
       });
   }

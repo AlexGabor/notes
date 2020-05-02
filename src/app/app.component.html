@@ -1,16 +1,23 @@
-<mat-toolbar>
-    <button mat-icon-button (click)="toggleMenu()">
-        <mat-icon>menu</mat-icon>
-    </button>
-    <span class="mat-display-1 title" [routerLink]="['']">Knowlegde base</span>
-</mat-toolbar>
-<mat-sidenav-container [hasBackdrop]="hasBackdrop">
-    <mat-sidenav [opened]="sideMenuOpened" mode="over">
+<mat-sidenav-container hasBackdrop (backdropClick)="toggleMenu()">
+    <mat-sidenav [opened]="sideMenuOpened" mode="over" *ngIf="hasNavigationDrawer" class="left-side">
         <app-navigation></app-navigation>
     </mat-sidenav>
     <mat-sidenav-content>
-        <div>
-            <router-outlet></router-outlet>
+        <mat-toolbar class="mat-elevation-z2">
+            <button mat-icon-button (click)="toggleMenu()" *ngIf="hasNavigationDrawer">
+                <mat-icon>menu</mat-icon>
+            </button>
+            <span class="mat-display-1 title" [routerLink]="['']">Knowlegde base</span>
+        </mat-toolbar>
+        <div class="content">
+            <div class="left" *ngIf="!hasNavigationDrawer">
+                <app-navigation></app-navigation>
+            </div>
+            <div class="center">
+                <router-outlet></router-outlet>
+            </div>
+            <div class="right" *ngIf="!hasContentsDrawer">
+            </div>
         </div>
     </mat-sidenav-content>
 </mat-sidenav-container>

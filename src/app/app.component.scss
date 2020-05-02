@@ -1,28 +1,40 @@
 :host {
-    display: flex;
-    flex-flow: column;
-    height: 100%;
-
-    mat-toolbar {
-        padding: 8px;
-        flex: 0 1 auto;
-
-        .title {
-            margin: 0;
-        }
-    }
-
     mat-sidenav-container {
-        flex: 1 1 auto;
+        height: 100%;
 
-        mat-sidenav {
-            width: 280px;
-        }
+        mat-sidenav-content {
+            display: flex;
+            flex-flow: column;
 
-        mat-sidenav-content > div {
-            display: block;
-            max-width: 680px;
-            margin: 0 auto;
+            mat-toolbar {
+                padding: 8px;
+                flex: 0 1 auto;
+
+                .title {
+                    margin: 0 0 0 16px;
+                }
+            }
+
+            .content {
+                width: 100%;
+                flex: 1 1 auto;
+                justify-content: center;
+                display: flex;
+                flex-flow: row;
+            }
+
+            .left {
+                width: 280px;
+            }
+
+            .center {
+                width: 100%;
+                max-width: 680px;
+            }
+
+            .right {
+                width: 280px;
+            }
         }
     }
 }
