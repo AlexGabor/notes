@@ -4,7 +4,12 @@
     height: 100%;
 
     mat-toolbar {
+        padding: 8px;
         flex: 0 1 auto;
+
+        .title {
+            margin: 0;
+        }
     }
 
     mat-sidenav-container {

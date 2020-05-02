@@ -6,11 +6,9 @@
         padding: 0;
         li {
             list-style-type: none;
-            padding: 16px;
-            font-weight: 500;
 
-            &:hover {
-                background-color: #333;
+            div {
+                padding: 16px;
             }
 
             span {

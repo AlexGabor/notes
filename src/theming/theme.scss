@@ -1,0 +1,37 @@
+@use "~@angular/material/theming";
+@use "typography.scss";
+@use "colors.scss";
+@use "styles.scss";
+@use "code.scss";
+
+@include theming.mat-core();
+
+$app-primary: theming.mat-palette(colors.$primary-color, 500, 200, 900);
+$app-accent: theming.mat-palette(colors.$accent-color, 500, 500, 500);
+
+// create theme
+$app-theme: theming.mat-dark-theme($app-primary, $app-accent);
+
+// customize theme
+$app-background: (
+    app-bar: map-get($app-primary, darker),
+    background: map-get($app-primary, default),
+    card: map-get($app-primary, darker),
+    dialog: map-get($app-primary, darker),
+);
+
+// apply customization
+$background: map-get($app-theme, background);
+$background: map-merge($background, $app-background);
+
+$app-theme: map-merge(
+    $app-theme,
+    (
+        background: $background,
+    )
+);
+
+@include theming.angular-material-theme($app-theme);
+@include theming.angular-material-typography(typography.$app-typography);
+@include styles.global-styles($app-theme);
+@include code.code-styles($app-theme);

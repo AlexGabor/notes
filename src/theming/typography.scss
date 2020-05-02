@@ -1,0 +1,24 @@
+@use "~@angular/material/theming";
+
+@import url('https://fonts.googleapis.com/css2?family=Merriweather&family=Roboto&display=swap');
+
+$display-font: "Roboto, \"Helvetica Neue\", sans-serif";
+$head-font: "Merriweather, serif";
+$body-font: "Roboto, \"Helvetica Neue\", sans-serif";
+
+$app-typography: theming.mat-typography-config(
+    $font-family: $display-font,
+    $display-4: theming.mat-typography-level(56px, 56px, $font-family: $display-font),
+    $display-3: theming.mat-typography-level(45px, 48px, $font-family: $display-font),
+    $display-2: theming.mat-typography-level(34px, 40px, $font-family: $display-font),
+    $display-1: theming.mat-typography-level(24px, 32px, $font-family: $display-font),
+    $headline: theming.mat-typography-level(24px, 32px, $font-family: $head-font),
+    $title: theming.mat-typography-level(20px, 32px, $font-family: $head-font),
+    $subheading-2: theming.mat-typography-level(16px, 28px, $font-family: $head-font),
+    $subheading-1: theming.mat-typography-level(15px, 24px, $font-family: $head-font),
+    $body-1: theming.mat-typography-level(15px, 20px, $font-family: $body-font),
+    $body-2: theming.mat-typography-level(15px, 20px, $font-family: $body-font),
+    $caption: theming.mat-typography-level(12px, 20px, $font-family: $body-font),
+    $button: theming.mat-typography-level(14px, $font-family: $body-font),
+    $input: theming.mat-typography-level(inherit, 1.125, $font-family: $body-font)
+);
