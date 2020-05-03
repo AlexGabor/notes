@@ -1,5 +1,6 @@
+import { ContentsService } from '../contents/contents.service';
 import { NavigationService } from './../navigation/navigation.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-file',
@@ -8,15 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FileComponent implements OnInit {
 
-  constructor(private navigationService: NavigationService) { }
+  constructor(private navigationService: NavigationService, private contentsService: ContentsService) { }
 
   fileContent: string;
 
   ngOnInit() {
     this.navigationService.getCurrentFile()
-      .subscribe(fileContent =>
-        this.fileContent = fileContent
-      );
+      .subscribe(fileContent => {
+        this.contentsService.onDocumentStart();
+        this.fileContent = fileContent;
+      });
   }
 
+  onReady() {
+      this.contentsService.onDocumentEnd();
+  }
 }

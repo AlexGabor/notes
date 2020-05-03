@@ -15,12 +15,14 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatRippleModule } from '@angular/material/core';
+import { ContentsComponent } from './feature/contents/contents.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavigationComponent,
-    FileComponent
+    FileComponent,
+    ContentsComponent
   ],
   imports: [
     BrowserModule,
