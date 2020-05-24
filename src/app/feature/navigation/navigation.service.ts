@@ -74,7 +74,7 @@ export class NavigationService {
   }
 }
 
-const baseUrl = 'https://api.github.com/repos/AlexGabor/knowledge-base-content/contents/';
+const baseUrl = 'https://api.github.com/repos/AlexGabor/notes-content/contents/';
 
 class ItemResponse {
   name: string;
