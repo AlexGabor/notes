@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "knowledge-base-web": {
+    "notes": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/knowledge-base-web",
+            "outputPath": "dist/notes",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -72,18 +72,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "knowledge-base-web:build"
+            "browserTarget": "notes:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "knowledge-base-web:build:production"
+              "browserTarget": "notes:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "knowledge-base-web:build"
+            "browserTarget": "notes:build"
           }
         },
         "test": {
@@ -121,22 +121,21 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "knowledge-base-web:serve"
+            "devServerTarget": "notes:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "knowledge-base-web:serve:production"
+              "devServerTarget": "notes:serve:production"
             }
           }
         },
         "deploy": {
           "builder": "angular-cli-ghpages:deploy",
           "options": {
-            "baseHref": "https://alexgabor.github.io/knowledge-base-web/"
           }
         }
       }
     }
   },
-  "defaultProject": "knowledge-base-web"
+  "defaultProject": "notes"
 }
