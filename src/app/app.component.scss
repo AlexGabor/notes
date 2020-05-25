@@ -2,6 +2,11 @@
     mat-sidenav-container {
         height: 100%;
 
+        .drawer {
+            width: 280px;
+            max-width: 90vw;
+        }
+
         mat-sidenav-content {
             display: flex;
             flex-flow: column;
