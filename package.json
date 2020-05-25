@@ -4,6 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "deploy": "ng deploy --cname=notes.alexgabor.com",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
